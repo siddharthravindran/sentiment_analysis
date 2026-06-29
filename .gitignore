@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.DS_Store
+emotion-model/
+emotion-classifier/
+emotion-classifier-v2/
+data/
+*.csv
+*.parquet
+__pycache__/
+.ipynb_checkpoints/
