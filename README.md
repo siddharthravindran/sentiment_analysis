@@ -16,10 +16,10 @@ Because emotions overlap in real language, the architecture uses a sigmoid outpu
 
 ## Model & approach
 
-- **Base model:** `roberta-base`, fine-tuned with `RobertaForSequenceClassification` using `problem_type="multi_label_classification"`.
-- **Loss:** BCE-with-logits over the nine labels; predictions thresholded at 0.40 by default (tunable in the app).
-- **Training:** Hugging Face `Trainer` on Python 3.12. *(See note on stack modernization below.)*
-- **Data:** _[TODO: dataset source + size — e.g. "~N labeled examples drawn from X"]_
+- **Base model:** `roberta-base`, fine-tuned with `AutoModelForSequenceClassification` and `problem_type="multi_label_classification"` (BCE-with-logits over the nine labels).
+- **Data:** ~3,200 labeled examples across the nine emotion families, split into separate train / validation / test sets.
+- **Training:** Hugging Face `Trainer` on Python 3.12 — learning rate 2e-5, effective batch size 16 (8 × 2 gradient-accumulation steps), 5 epochs, weight decay 0.01. Best checkpoint selected by validation micro-F1 (`load_best_model_at_end`).
+- **Inference:** sigmoid per label; reported metrics use a 0.5 decision threshold, while the app exposes an adjustable threshold (default 0.40) so users can trade precision against recall.
 
 ## Results
 
