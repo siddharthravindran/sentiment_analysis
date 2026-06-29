@@ -6,8 +6,8 @@ st.set_page_config(page_title="Emotion Classifier", page_icon="🎭")
 
 @st.cache_resource
 def load_model():
-    tok = AutoTokenizer.from_pretrained("siddharthravindran/emotion-model")
-    mdl = AutoModelForSequenceClassification.from_pretrained("siddharthravindran/emotion-model")
+    tok = AutoTokenizer.from_pretrained("Siddharthr30/emotion-model")
+    mdl = AutoModelForSequenceClassification.from_pretrained("Siddharthr30/emotion-model")
     mdl.eval()
     return tok, mdl
 
